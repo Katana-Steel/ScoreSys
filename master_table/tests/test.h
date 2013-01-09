@@ -1,0 +1,3 @@
+/* GPL preamble */
+
+void test();
