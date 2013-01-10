@@ -3,7 +3,7 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET = 
+TARGET = MasterServer
 DEPENDPATH += .
 INCLUDEPATH += . ./tests
 QT += sql network
@@ -27,3 +27,11 @@ HEADERS += \
 
 OTHER_FILES += \
     db_create.sql
+
+win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../common_lib/release/ -lcommon_lib
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../common_lib/debug/ -lcommon_lib
+else:symbian: LIBS += -lcommon_lib
+else:unix: LIBS += -L$$PWD/../common_lib/ -lcommon_lib
+
+INCLUDEPATH += $$PWD/../common_lib
+DEPENDPATH += $$PWD/../common_lib

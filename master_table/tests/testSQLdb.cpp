@@ -13,17 +13,52 @@ static void testLargeCompetitorInsert(); // Made this in to a two part test
 static QStringList* generateCompetitors(int);
 static void testCreateBoard();
 
-static SQLdb *db;
+// a pointer to the test database, this needs to be freed at the end of all tests.
+static SQLdb *db; 
+
+// for all outsiders who whiches to peek at the content of the test DB
+QStringList
+getDataFromTestDb(const QString &table, const QString &where,const QString &limit)
+{
+    QStringList ret = QStringList();
+    if(table.isEmpty()) {
+        return ret;
+    }
+    QString sql = "select * from `" + table + "`";
+    if(!where.isEmpty()) {
+        sql = sql + " where " + where;
+    }
+    if(!limit.isEmpty()) {
+        sql = sql + " limit " + limit;
+    }
+    QSqlDatabase *primeDb = new QSqlDatabase(QSqlDatabase::database("master"));
+    QSqlQuery que = primeDb->exec("select name,cats from competitor");
+    int cols = que.record().count();
+    QString row = "";
+    // adding the column names as the first row
+    for(int i=0; i < cols; i++) {
+        row += que.record().fieldName(i) + ",";
+    }
+    ret.append(row);
+    
+    while(que.next()) {
+        row = "";
+        for(int i=0; i < cols; i++) {
+            row += que.value(i).toString() + ",";
+        }
+        ret.append(row);
+    }
+    return ret;
+}
 
 void
 testSQLdb(QTextStream &out)
 {
-  out << "entering SQL testing." << endl;
-  db = new SQLdb(":memory:");
-  testReadSQLfile();
-  testLargeCompetitorInsert();
-  testCreateBoard();
-  delete db;
+    out << "entering SQL testing." << endl;
+    db = new SQLdb(":memory:");
+    testReadSQLfile();
+    testLargeCompetitorInsert();
+    testCreateBoard();
 //  THROW_E("Object is not implemented yet") ;
 }
 
@@ -81,4 +116,11 @@ static void
 testCreateBoard()
 {
 
+}
+
+
+void
+destroyTestDb(void)
+{
+    delete db;
 }

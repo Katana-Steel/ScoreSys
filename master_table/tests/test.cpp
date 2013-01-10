@@ -10,16 +10,18 @@
 
 // the main test function
 void test() {
-	QTextStream out(stdout);
-	out << "starting tests" << endl;
-	try {
-		testSQLdb(out);
+    QTextStream out(stdout);
+    out << "starting tests" << endl;
+    try {
+        testSQLdb(out);
         testMasterServer(out);
-		out << "all tests passed!" << endl;
-	}
-	catch(Error *err) {
+	destroyTestDb();
+        out << "all tests passed!" << endl;
+    }
+    catch(Error *err) {
+        destroyTestDb();
         out << err->filename << ":" << err->line << " --- "
             << endl << err->error << endl;
         throw err;
-	}
+    }
 }
