@@ -15,7 +15,8 @@ void test() {
     try {
         testSQLdb(out);
         testMasterServer(out);
-	destroyTestDb();
+        destroyTestDb();
+        QCoreApplication::exec();
         out << "all tests passed!" << endl;
     }
     catch(Error *err) {

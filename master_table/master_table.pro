@@ -23,7 +23,8 @@ HEADERS += \
     MasterServer.h \
     tests/test.h \
     tests/testMasterServer.h \
-    tests/testSQLdb.h
+    tests/testSQLdb.h \
+    tests/testMasterServerObjects.h
 
 OTHER_FILES += \
     db_create.sql

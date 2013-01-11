@@ -2,29 +2,65 @@
 #include <QtCore>
 #include "error.h"
 #include "testMasterServer.h"
+#include "testMasterServerObjects.h"
 #include "MasterServer.h"
-
-// #include "udpCallback.h"
-
-static void testRequestTitle();
 
 void
 testMasterServer(QTextStream &out)
 {
-    out << "entering MasterServer test" << endl;
-    out << "Starting mock master server" << endl;
-    MasterServer *master = new MasterServer();
-    testRequestTitle();
-    delete master;
+    new testMS(out);
 }
 
-static void
-testRequestTitle()
+testMS::testMS(QTextStream &_o)
+    : QObject(),out(_o.device())
+{
+    out << "entering MasterServer test" << endl;
+    out << "Starting mock master server" << endl;
+    master = new MasterServer();
+
+
+    // setting up the request title test
+    out << "request Title from MasterServer" << endl;
+    trqt = new testRequestTitle();
+    connect(trqt,SIGNAL(finished(QObject*)),this, SLOT(destroyCases(QObject*)));
+    connect(master,SIGNAL(updateBoardName(const QString&,const QString&,quint16)), trqt, SLOT(rqCallback(const QString&,const QString&, quint16)));
+    trqt->start();
+}
+
+void
+testMS::destroyCases(QObject *obj)
+{
+    if(obj == trqt) {
+        delete trqt;
+        trqt = 0;
+        // last test case
+        this->deleteLater();
+    }
+}
+
+
+testRequestTitle::testRequestTitle()
+    : QObject(),myPort(25025)
+{
+}
+
+void
+testRequestTitle::start()
 {
     QUdpSocket *sock = new QUdpSocket();
-    quint16 myPort = 25025;
     sock->bind(myPort);
     QByteArray datagram = "title " + QByteArray::number((uint)myPort);
     sock->writeDatagram(datagram,QHostAddress::Broadcast,9500);
+}
 
+void
+testRequestTitle::rqCallback(const QString &title, const QString&, quint16 port)
+{
+    if(port != myPort)
+    {
+        THROW_E("didn't get my port number back...");
+    } else if(title.isEmpty()) {
+        THROW_E("Got an empty title... wanted a little more");
+    }
+    emit finished(this);
 }
