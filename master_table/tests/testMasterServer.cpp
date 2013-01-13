@@ -34,7 +34,7 @@ testMS::destroyCases(QObject *obj)
         delete trqt;
         trqt = 0;
         // last test case
-        this->deleteLater();
+        QCoreApplication::exit(0);
     }
 }
 

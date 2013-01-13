@@ -12,5 +12,5 @@ int main(int ac, char** av)
     catch(...) {
         return -1;
     }
-    return a.exec();
+    return 0;
 }

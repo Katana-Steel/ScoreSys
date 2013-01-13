@@ -14,7 +14,19 @@ void
 MasterServer::process(const QString &IPv4, QByteArray msg)
 {
     QList<QByteArray> parts = msg.split(' ');
-    emit updateBoardName("", IPv4, 0);
+    if(parts.count() == 2) {
+        QString cmd = parts.at(0);
+        if(cmd == QString("title")) {
+            quint16 thePort = parts.at(1).toUShort();
+            if(autoMode) {
+                counts++;
+                emit updateBoardName("Default " + QString::number(counts), IPv4, thePort);
+            } else {
+                emit newBoardReady(IPv4, thePort);
+            }
+        }
+    }
+
 }
 
 void

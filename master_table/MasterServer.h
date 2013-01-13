@@ -16,12 +16,12 @@ public:
     
 signals:
     void updateBoardName(const QString &name, const QString &IPv4, quint16 port);
+    void newBoardReady(const QString &IPv4, quint16 port);
 
 private:
     void process(const QString &IPv4, QByteArray msg);
 public slots:
     void incomming();
-  //  void pushTableName(QString name, QString IPv4, quint16 port);
 };
 
 #endif // MASTERSERVER_H
