@@ -2,12 +2,18 @@
 #include <QtGui>
 #include <QtSql>
 #include "sboard.h"
+#include "karate.h"
 #include "udp_ctl.h"
 
 sboard::sboard(QWidget *parent)
     : QWidget(parent),port(8888)
 {
     setupUi(this);
+    /* the default scoreboard is for karate
+       but the abstraction with scoreBase means in the future
+       we could have more types of scoring systems */
+    scores = new Karate(this);
+    this->TheBoard->addWidget(scores);
     timer = new QTimer(this);
     disp = new QTimer(this);
     disp->setInterval(15000);
@@ -117,32 +123,33 @@ sboard::set_title(const QString &str)
 void
 sboard::set_aka_name(const QString &str)
 {
-    nameAka->setText(str);
+//    nameAka->setText(str);
 }
 
 void
 sboard::set_ao_name(const QString &str)
 {
-    nameAo->setText(str);
+//    nameAo->setText(str);
 }
 
 void
 sboard::set_aka_points(int points)
 {
-    if(!timer->isActive() && points != 0) return;
-    scoreAka->display(points);
+/*    if(!timer->isActive() && points != 0) return;
+    scoreAka->display(points); */
 }
 
 void
 sboard::set_ao_points(int points)
 {
-    if(!timer->isActive() && points != 0) return;
-    scoreAo->display(points);
+/*    if(!timer->isActive() && points != 0) return;
+    scoreAo->display(points); */
 }
 
 void
 sboard::aka_penalty(int cat,int lvl)
 {
+/*
     QString pen;
     for(int i=0;i<lvl;i++)
         pen.append("X ");
@@ -156,11 +163,13 @@ sboard::aka_penalty(int cat,int lvl)
         aka_cat2->setText(QString("Cat. 2 ") + pen);
         break;
     }
+*/
 }
 
 void
 sboard::ao_penalty(int cat,int lvl)
 {
+/*
     QString pen;
     for(int i=0;i<lvl;i++)
         pen.append("X ");
@@ -174,5 +183,5 @@ sboard::ao_penalty(int cat,int lvl)
         ao_cat2->setText(QString("Cat. 2 ") + pen);
         break;
     }
+*/
 }
-

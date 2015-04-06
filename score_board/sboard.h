@@ -6,6 +6,7 @@
 #include <QWidget>
 
 class udpserver;
+class scoreBase;
 
 class sboard : public QWidget, private Ui_Dialog
 {
@@ -32,6 +33,7 @@ private:
     QTimer *disp;
     QString table;
     quint16 port;
+    scoreBase *scores;
 
     void mouseReleaseEvent(QMouseEvent *event);
 signals:
