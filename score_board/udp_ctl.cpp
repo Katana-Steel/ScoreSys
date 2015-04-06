@@ -22,7 +22,7 @@ udpserver::~udpserver()
 }
 
 void
-udpserver::checkdata(QByteArray qba)
+udpserver::checkdata (QByteArray qba)
 {
     if(qba.contains("tstop")) timer->stop_time();
     if(qba.contains("tstart")) timer->start_time();
@@ -82,6 +82,18 @@ udpserver::checkdata(QByteArray qba)
 }
 
 void
+udpserver::timerOps (QByteArray ops)
+{}
+
+void
+udpserver::uiOps (QByteArray ops)
+{}
+
+void
+udpserver::playerOps (QByteArray ops)
+{}
+
+void
 udpserver::udp_data()
 {
     while (sock->hasPendingDatagrams()) {
@@ -100,6 +112,6 @@ udpserver::udp_data()
 void
 udpserver::requestTitle()
 {
-    QByteArray datagram = "title " + QByteArray::number((uint)my_port);
+    QByteArray datagram = "needUi " + QByteArray::number((uint)my_port);
     sock->writeDatagram(datagram,QHostAddress::Broadcast,9500);
 }
