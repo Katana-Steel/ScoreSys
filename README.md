@@ -1,13 +1,13 @@
 ScoreSys
 ========
 
-Martial Arts Networked Tournament Scoreboard
+Martial Arts Tournament Scoreboard
 
 -----------
 Containing:
 
 a UDP enabled ScoreBoard to display the combatants
-and their scores, as well as their penaties.
+and their scores, as well as their penalties.
 
 a MasterServer to handle storing of combatants, 
 controlling JudgesTables and assigning ScoreBoards
