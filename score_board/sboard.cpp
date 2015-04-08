@@ -12,8 +12,7 @@ sboard::sboard(QWidget *parent)
     /* the default scoreboard is for karate
        but the abstraction with scoreBase means in the future
        we could have more types of scoring systems */
-    scores = new Karate(this);
-    this->TheBoard->addWidget(scores);
+    scores = null;
     timer = new QTimer(this);
     disp = new QTimer(this);
     disp->setInterval(15000);
@@ -28,6 +27,12 @@ sboard::~sboard()
     if(timer->isActive()) timer->stop();
     delete disp;
     delete timer;
+}
+
+scoreBase*
+sboard::get_score_ui  ()
+{
+  return this->scores;
 }
 
 void
@@ -121,67 +126,19 @@ sboard::set_title(const QString &str)
 }
 
 void
-sboard::set_aka_name(const QString &str)
+sboard::set_score_ui (const QString &str)
 {
-//    nameAka->setText(str);
-}
-
-void
-sboard::set_ao_name(const QString &str)
-{
-//    nameAo->setText(str);
-}
-
-void
-sboard::set_aka_points(int points)
-{
-/*    if(!timer->isActive() && points != 0) return;
-    scoreAka->display(points); */
-}
-
-void
-sboard::set_ao_points(int points)
-{
-/*    if(!timer->isActive() && points != 0) return;
-    scoreAo->display(points); */
-}
-
-void
-sboard::aka_penalty(int cat,int lvl)
-{
-/*
-    QString pen;
-    for(int i=0;i<lvl;i++)
-        pen.append("X ");
-
-    switch(cat)
-    {
-    case 1:
-        aka_cat1->setText(QString("Cat. 1 ").append(pen));
-        break;
-    case 2:
-        aka_cat2->setText(QString("Cat. 2 ") + pen);
-        break;
+    scoreBase *newui=null;
+    if (str == QString ("karate")){
+      newui = new Karate  (this);
     }
-*/
-}
 
-void
-sboard::ao_penalty(int cat,int lvl)
-{
-/*
-    QString pen;
-    for(int i=0;i<lvl;i++)
-        pen.append("X ");
-
-    switch(cat)
-    {
-    case 1:
-        ao_cat1->setText(QString("Cat. 1 ") + pen);
-        break;
-    case 2:
-        ao_cat2->setText(QString("Cat. 2 ") + pen);
-        break;
+    if (newui != null) {
+      if (scores != null) {
+        this->TheBoard->removeWidget (scores);
+        delete scores;
+      }
+      this->TheBoard->addWidget (newui);
+      scores = newui;
     }
-*/
 }

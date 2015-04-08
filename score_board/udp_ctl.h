@@ -20,8 +20,8 @@ private:
     quint16 my_port;
 
     void checkdata(QByteArray qba);
-    void timerOps (QByteArray ops);
-    void uiOps (QByteArray ops);
+    void timerOps (QList<QByteArray> ops);
+    void uiOps (QList<QByteArray> ops);
     void playerOps (QByteArray ops);
 private slots:
     void udp_data();

@@ -14,6 +14,7 @@ class sboard : public QWidget, private Ui_Dialog
 public:
     sboard(QWidget *parent=0);
     ~sboard();
+    scoreBase* get_score_ui();
 public slots:
     void show();
     void update_display();
@@ -22,12 +23,7 @@ public slots:
     void start_time();
     void reset_time(int min=6, int sec=0,int pro=0);
     void set_title(const QString &str);
-    void set_aka_name(const QString &name);
-    void set_ao_name(const QString &name);
-    void set_aka_points(int);
-    void set_ao_points(int);
-    void aka_penalty(int,int);
-    void ao_penalty(int,int);
+    void set_score_ui(const QString &req_ui);
 private:
     QTimer *timer;
     QTimer *disp;

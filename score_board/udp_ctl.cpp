@@ -24,74 +24,63 @@ udpserver::~udpserver()
 void
 udpserver::checkdata (QByteArray qba)
 {
-    if(qba.contains("tstop")) timer->stop_time();
-    if(qba.contains("tstart")) timer->start_time();
-    if(qba.contains("treset")) timer->reset_time();
-    if(qba.contains("aka")) {
-        int i = qba.indexOf("aka");
-        i = qba.indexOf(" ", i);
-        int j = qba.indexOf(" ", i+1);
-        int p = qba.mid(i,j-i).toInt();
-        timer->set_aka_points(p);
+  QList<QByteArray> ops = qba.split(' ');
+    if(qba.startsWith("timer ")) { 
+      timerOps (ops);
     }
-    if(qba.contains("ao")) {
-        int i = qba.indexOf("ao");
-        i = qba.indexOf(" ", i);
-        int j = qba.indexOf(" ", i+1);
-        int p = qba.mid(i,j-i).toInt();
-        timer->set_ao_points(p);
+    if(qba.startsWith("SetUi ")) {
+        uiOps (ops);
     }
-    if(qba.contains("name")) {
-        int i = qba.indexOf("name") + 4;
-        int j = qba.indexOf(" ",i);
-        QByteArray tmp = qba.mid(i,j-i);
-        i = j+2;
-        j = qba.indexOf("\"",i);
-        if(tmp == QString("aka")) {
-            timer->set_aka_name(qba.mid(i,j-i));
-        }
-        if(tmp == QString("ao")) {
-            timer->set_ao_name(qba.mid(i,j-i));
-        }
-    }
-    if(qba.contains("title")) {
-        int i = qba.indexOf("title");
-        i = qba.indexOf(" ") + 2;
-        int j = qba.indexOf("\"",i);
-        timer->set_title(qba.mid(i,j-i));
-    }
-    if(qba.contains("pen")) {
-        int i = qba.indexOf("pen") + 3;
-        int j = qba.indexOf(" ",i);
-        QByteArray tmp = qba.mid(i,j-i);
-        i = j+1;
-        int cat;
-        int pen;
-        j = qba.indexOf(" ",i);
-        cat = qba.mid(i,j-i).toInt();
-        i = qba.indexOf(" ",j) + 1;
-        j = 1;
-        pen = qba.mid(i,j).toInt();
-        if(tmp == QString("aka")) {
-            timer->aka_penalty(cat,pen);
-        }
-        if(tmp == QString("ao")) {
-            timer->ao_penalty(cat,pen);
-        }
+    if(qba.startsWith("player ")) {
+      int i = qba.indexOf(" ")+1;
+      playerOps(qba.mid(i));
     }
 }
 
 void
-udpserver::timerOps (QByteArray ops)
-{}
+udpserver::timerOps ( QList<QByteArray> ops)
+{
+  if (ops.count() > 2) {
+    QList<QByteArray> t = ops.at(2).split(':');
+    timer->reset_time(t.at(0).toInt(), t.at(1).toInt(), t.at(2).toInt());
+  }
+  if (ops.at(1) == "start")
+    timer->start_time();
+  if (ops.at(1) == "stop")
+    timer->stop_time();
+
+}
 
 void
-udpserver::uiOps (QByteArray ops)
-{}
+udpserver::uiOps ( QList<QByteArray> ops)
+{
+    if (ops.count()>=2) {
+      ops.removeFirst();
+      timer->set_title(ops.first().replace ('\'','');
+      ops.removeFirst();
+      if (!ops.isEmpty()) { 
+        timer->set_score_ui(ops.first());
+      }
+    } 
+}
 
 void
-udpserver::playerOps (QByteArray ops)
-{}
+udpserver::playerOps ( QByteArray ops)
+{
+  scoreBase *scores = timer->get_score_ui();
+  if (scores == null)
+    return;
+  char pl = ops.at(0);
+  QList<QByteArray> update();
+  int i = ops.indexOf ("'")+1;
+  int j = ops.indexOf ("'",i)-1;
+  update.append (ops.mid (i,j-i));
+  update.append (ops.mid (j+2).split (' '));
+  if (pl == 'r')
+    scores->setRightPlayer(update);
+  if (pl == 'l')
+    scores->setLeftPlayer(update);
+}
 
 void
 udpserver::udp_data()
@@ -106,6 +95,7 @@ udpserver::udp_data()
                                  &sender, &senderPort);
 
          checkdata(datagram);
+         datagram.clear();
      }
 }
 
