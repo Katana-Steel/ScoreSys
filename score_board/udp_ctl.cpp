@@ -4,6 +4,7 @@
 #include <QtNetwork>
 #include "udp_ctl.h"
 #include "sboard.h"
+#include "scoreBase.h"
 
 udpserver::udpserver(quint16 port, sboard *parent)
     : QObject(parent)
@@ -24,15 +25,20 @@ udpserver::~udpserver()
 void
 udpserver::checkdata (QByteArray qba)
 {
-  QList<QByteArray> ops = qba.split(' ');
-    if(qba.startsWith("timer ")) { 
+    QList<QByteArray> ops;
+    int i = qba.indexOf(" ")+1;
+    if(qba.startsWith("timer ")) {
+      ops = qba.split(' ');
       timerOps (ops);
     }
     if(qba.startsWith("SetUi ")) {
+        ops = QList<QByteArray>();
+        int j = qba.indexOf("'",i+2);
+        ops.append(qba.mid(i,j-i));
+        ops.append(qba.mid(j+2).split(' '));
         uiOps (ops);
     }
     if(qba.startsWith("player ")) {
-      int i = qba.indexOf(" ")+1;
       playerOps(qba.mid(i));
     }
 }
@@ -52,30 +58,31 @@ udpserver::timerOps ( QList<QByteArray> ops)
 }
 
 void
-udpserver::uiOps ( QList<QByteArray> ops)
+udpserver::uiOps (QList<QByteArray> ops)
 {
-    if (ops.count()>=2) {
-      ops.removeFirst();
-      timer->set_title(ops.first().replace ('\'','');
-      ops.removeFirst();
-      if (!ops.isEmpty()) { 
-        timer->set_score_ui(ops.first());
-      }
-    } 
+  timer->set_title(ops.first().replace ('\'',QString("")));
+  ops.removeFirst();
+  if (!ops.isEmpty()) {
+    timer->set_score_ui(ops.first());
+  }
 }
 
 void
 udpserver::playerOps ( QByteArray ops)
 {
   scoreBase *scores = timer->get_score_ui();
-  if (scores == null)
+  if (scores == 0)
     return;
   char pl = ops.at(0);
-  QList<QByteArray> update();
+
+  QList<QString> update = QList<QString>();
   int i = ops.indexOf ("'")+1;
   int j = ops.indexOf ("'",i)-1;
-  update.append (ops.mid (i,j-i));
-  update.append (ops.mid (j+2).split (' '));
+  QString n = QString(ops.mid(i,j-i));
+  update.append(n);
+  foreach( QString part, ops.mid (j+2).split(' ')) {
+    update.append(part);
+  }
   if (pl == 'r')
     scores->setRightPlayer(update);
   if (pl == 'l')
@@ -94,7 +101,9 @@ udpserver::udp_data()
          sock->readDatagram(datagram.data(), datagram.size(),
                                  &sender, &senderPort);
 
-         checkdata(datagram);
+         foreach(QByteArray data, datagram.split('\n')) {
+           checkdata(data);
+         }
          datagram.clear();
      }
 }

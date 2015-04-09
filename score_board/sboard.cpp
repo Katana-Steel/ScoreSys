@@ -12,7 +12,7 @@ sboard::sboard(QWidget *parent)
     /* the default scoreboard is for karate
        but the abstraction with scoreBase means in the future
        we could have more types of scoring systems */
-    scores = null;
+    scores = 0;
     timer = new QTimer(this);
     disp = new QTimer(this);
     disp->setInterval(15000);
@@ -128,17 +128,17 @@ sboard::set_title(const QString &str)
 void
 sboard::set_score_ui (const QString &str)
 {
-    scoreBase *newui=null;
-    if (str == QString ("karate")){
-      newui = new Karate  (this);
+    scoreBase *newui=0;
+    if (str.toLower() == QString ("karate")){
+      newui = new Karate(this);
     }
 
-    if (newui != null) {
-      if (scores != null) {
+    if (newui != 0) {
+      if (scores != 0) {
         this->TheBoard->removeWidget (scores);
         delete scores;
       }
-      this->TheBoard->addWidget (newui);
       scores = newui;
+      this->TheBoard->addWidget(scores);
     }
 }
