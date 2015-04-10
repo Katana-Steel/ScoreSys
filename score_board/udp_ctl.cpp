@@ -48,7 +48,8 @@ udpserver::timerOps ( QList<QByteArray> ops)
 {
   if (ops.count() > 2) {
     QList<QByteArray> t = ops.at(2).split(':');
-    timer->reset_time(t.at(0).toInt(), t.at(1).toInt(), t.at(2).toInt());
+    if (t.count () > 2)
+      timer->reset_time(t.at(0).toInt(), t.at(1).toInt(), t.at(2).toInt());
   }
   if (ops.at(1) == "start")
     timer->start_time();
