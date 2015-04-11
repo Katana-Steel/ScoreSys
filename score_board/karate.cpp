@@ -12,11 +12,11 @@ Karate::Karate(QWidget *parent)
 void
 Karate::setRightPlayer(QList<QString> pldata)
 {
-  nameAka.setText (pldata.at (0));
+  nameAka->setText (pldata.at (0));
 }
 
 void
 Karate::setLeftPlayer(QList<QString> pldata)
 {
-  nameAo.setText (pldata.at (0));
+  nameAo->setText (pldata.at (0));
 }
