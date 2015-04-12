@@ -7,7 +7,7 @@ compiler:
 before_install: sudo apt-get update -qq && sudo apt-get install libqt4-dev;
 
 script:
-  - qmake -recursive -spec linux-$CC
+  - if [[ "$CC" == "clang" ]]; then SPEC="-spec unsupported/linux-clang" ;fi; qmake -r $SPEC
   - make
 
 branches:
