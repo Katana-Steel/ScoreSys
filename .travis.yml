@@ -9,6 +9,9 @@ before_install: sudo apt-get update -qq && sudo apt-get install libqt4-dev;
 script:
   - if [[ "$CC" == "clang" ]]; then SPEC="-spec unsupported/linux-clang" ;fi; qmake -r $SPEC
   - make
+  - echo "running Test on Score Board"
+  - cd score_board; chmod +x tests/*;tests/score_board.sh; cd -
+  - cat master.log
 
 branches:
   only: master
