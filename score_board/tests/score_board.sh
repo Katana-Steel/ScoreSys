@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SB=
-function done() {
+function fin_exit() {
   [[ -n $SB ]] && kill $SB
   exit $1
 }
@@ -14,4 +14,4 @@ SB=$!
 sleep 10
 
 echo "All Pass!"
-done $?
+fin_exit $?
