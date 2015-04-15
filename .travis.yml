@@ -11,7 +11,7 @@ script:
   - make
   - echo "running Test on Score Board"
   - cd score_board; chmod +x tests/*;tests/score_board.sh; cd -
-  - cat master.log
+  - cat score_board/master.log
 
 branches:
   only: master
