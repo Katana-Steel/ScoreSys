@@ -6,8 +6,7 @@ compiler:
 
 before_install:
   - sudo apt-get update -qq && sudo apt-get install libqt4-dev netcat-traditional
-  - sudo update-alternatives --list nc
-  - sudo update-alternatives --set nc 2
+  - sudo update-alternatives --set nc /bin/nc.traditional
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start 
 
