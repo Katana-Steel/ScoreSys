@@ -45,7 +45,10 @@ echo "timer stop" | nc -uq 1 127.0.0.1 $P
 test_running || fin_exit 1
 echo " Passed!"
 
-
+echo -n "Set Ui test 1"
+echo "setUi 'Killer Floor' karate" | nc -uq 1 127.0.0.1 $P
+test_running || fin_exit 1
+echo " Passed!"
 
 echo "All Passed!"
 fin_exit $?

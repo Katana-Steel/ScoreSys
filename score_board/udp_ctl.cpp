@@ -15,7 +15,6 @@ udpserver::udpserver(quint16 port, sboard *parent)
     sock->bind(port,QUdpSocket::DontShareAddress|QUdpSocket::ReuseAddressHint);
 
     connect(sock, SIGNAL(readyRead()), this, SLOT(udp_data()));
-    connect(timer, SIGNAL(needTitle()), this, SLOT(requestTitle()));
 }
 
 udpserver::~udpserver()
