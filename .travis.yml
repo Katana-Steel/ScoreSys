@@ -5,7 +5,7 @@ compiler:
   - clang
 
 before_install:
-  - sudo apt-get update -qq && sudo apt-get install libqt4-dev
+  - sudo apt-get update -qq && sudo apt-get install libqt4-dev netcat-traditional
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start 
 
