@@ -45,8 +45,18 @@ echo "timer stop" | nc -uq 1 127.0.0.1 $P
 test_running || fin_exit 1
 echo " Passed!"
 
+echo -n "Pre Ui player update 1"
+echo "player r 'Claude Moné' pt:4 cat1:0 cat2:1" | nc -uq 1 127.0.0.1 $P
+test_running || fin_exit 1
+echo " Passed!"
+
 echo -n "Set Ui test 1"
 echo "setUi 'Killer Floor' karate" | nc -uq 1 127.0.0.1 $P
+test_running || fin_exit 1
+echo " Passed!"
+
+echo -n "Player update test 2 (post ui)"
+echo "player r 'Claude Moné' pt:3 cat1:0 cat2:1" | nc -uq 1 127.0.0.1 $P
 test_running || fin_exit 1
 echo " Passed!"
 
