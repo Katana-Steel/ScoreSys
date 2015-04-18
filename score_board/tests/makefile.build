@@ -1,15 +1,18 @@
 
+mocs = ../moc_sboard.o ../moc_karate.o
+
 all: sboard_test
 
 sboard_test: sboard.o test.o
-    $(LINK) $(LFLAGS) -o sboard_test $(LIBS) ../sboard.o sboard.o test.o 
+	$(LINK) $(LFLAGS) -o sboard_test $(LIBS) ../sboard.o ../karate.o $(mocs) sboard.o test.o 
 
-sboard.h: ../sboard.h 
-   cp ../sboard.h .
-   sed -i 's/private/protected/' sboard.h
+sboard.h: ../sboard.h
+	cp ../sboard.h .
+	sed -i 's/private/protected/' sboard.h
+	sed -i 's%ui_%../ui_%' sboard.h
 
 test.o: test.cpp tsboard.h
-    $(CXX) $(CXXFLAGS) $(INCPATH) -c test.cpp
+	$(CXX) $(CXXFLAGS) $(INCPATH) -c test.cpp
 
 sboard.o: sboard.cpp sboard.h tsboard.h
-    $(CXX) $(CXXFLAGS) $(INCPATH) -c sboard.cpp
+	$(CXX) $(CXXFLAGS) $(INCPATH) -c sboard.cpp

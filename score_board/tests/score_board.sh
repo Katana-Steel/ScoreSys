@@ -10,10 +10,11 @@ function test_running() {
   ps ax | grep $SB > /dev/null 2>&1
 }
 
-grep = ../Makefile | head -9 > Makefile 
-cat makefile.build >> Makefile
-
+grep = Makefile | head -9 > tests/Makefile
+cat tests/makefile.build >> tests/Makefile
+cd tests
 make
+cd -
 
 nc -lui 3 -p 9500 > master.log 2>&1 &
 
@@ -65,7 +66,7 @@ echo "player r 'Claude Moné' pt:3 cat1:0 cat2:1" | nc -uq 1 127.0.0.1 $P
 test_running || fin_exit 1
 echo " Passed!"
 
-./sboard_test || fin_exit $?
+tests/sboard_test || fin_exit $?
 
 echo "All Passed!"
 fin_exit $?
