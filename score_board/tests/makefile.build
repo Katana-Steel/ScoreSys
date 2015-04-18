@@ -1,0 +1,15 @@
+
+all: sboard_test
+
+sboard_test: sboard.o test.o
+    $(LINK) $(LFLAGS) -o sboard_test $(LIBS) ../sboard.o sboard.o test.o 
+
+sboard.h: ../sboard.h 
+   cp ../sboard.h .
+   sed -i 's/private/protected/' sboard.h
+
+test.o: test.cpp tsboard.h
+    $(CXX) $(CXXFLAGS) $(INCPATH) -c test.cpp
+
+sboard.o: sboard.cpp sboard.h tsboard.h
+    $(CXX) $(CXXFLAGS) $(INCPATH) -c sboard.cpp
