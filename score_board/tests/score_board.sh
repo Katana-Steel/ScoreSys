@@ -10,7 +10,7 @@ function test_running() {
   ps ax | grep $SB > /dev/null 2>&1
 }
 
-grep = Makefile | head -9 > tests/Makefile
+grep = Makefile | head -9 | tee tests/Makefile
 cat tests/makefile.build >> tests/Makefile
 cd tests
 make

@@ -4,7 +4,7 @@ mocs = ../moc_sboard.o ../moc_karate.o
 all: sboard_test
 
 sboard_test: sboard.o test.o
-	$(LINK) $(LFLAGS) -o sboard_test $(LIBS) ../sboard.o ../karate.o $(mocs) sboard.o test.o 
+	$(LINK) $(LFLAGS) -o sboard_test ../sboard.o ../karate.o $(mocs) sboard.o test.o $(LIBS)
 
 sboard.h: ../sboard.h
 	cp ../sboard.h .
