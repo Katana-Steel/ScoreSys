@@ -1,4 +1,5 @@
 #include "tsboard.h"
+#include "tests.h"
 #include <iostream>
 
 using namespace std;
@@ -21,5 +22,5 @@ sboard_test::testTimer()
     this->reset_time();
     int min = this->timeMin->intValue ();
     if (6 != min)
-        throw ();
+        throw (new Assert("min isn't 6 after reset!"));
 }
