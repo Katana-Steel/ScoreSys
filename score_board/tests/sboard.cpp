@@ -12,4 +12,14 @@ void
 sboard_test::test()
 {
   cout << "initated unit test of sboard" << endl;
+  this->testTimer();
+}
+
+void
+sboard_test::testTimer()
+{
+    this->reset_time();
+    int min = this->timeMin->intValue ();
+    if (6 != min)
+        throw ();
 }
