@@ -13,8 +13,10 @@ function test_running() {
 grep = Makefile | head -9 | tee tests/Makefile
 cat tests/makefile.build >> tests/Makefile
 cd tests
-make
+make || fin_exit 1
 cd -
+
+tests/sboard_test || fin_exit $?
 
 nc -lui 3 -p 9500 > master.log 2>&1 &
 
@@ -65,8 +67,6 @@ echo -n "Player update test 2 (post ui)"
 echo "player r 'Claude Moné' pt:3 cat1:0 cat2:1" | nc -uq 1 127.0.0.1 $P
 test_running || fin_exit 1
 echo " Passed!"
-
-tests/sboard_test || fin_exit $?
 
 echo "All Passed!"
 fin_exit $?

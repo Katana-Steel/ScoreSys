@@ -20,7 +20,10 @@ void
 sboard_test::testTimer()
 {
     this->reset_time();
-    int min = this->timeMin->intValue ();
-    if (6 != min)
+    int val = this->timeMin->intValue ();
+    if (6 != val)
         throw (new Assert("min isn't 6 after reset!"));
+    val = this->timeSec->intValue ();
+    if (6 != val)
+        throw (new Assert("sec isn't 6 after reset!"));
 }
