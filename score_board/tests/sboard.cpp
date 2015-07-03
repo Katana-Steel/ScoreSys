@@ -24,6 +24,11 @@ sboard_test::testTimer()
     if (6 != val)
         throw (new Assert("min isn't 6 after reset!"));
     val = this->timeSec->intValue ();
-    if (6 != val)
-        throw (new Assert("sec isn't 6 after reset!"));
+    if (0 != val)
+        throw (new Assert("sec isn't 0 after reset!"));
+    val = this->timeProcentSec->intValue ();
+    if (0 != val)
+        throw (new Assert("hundreds of a sec isn't 0 after reset!"));
+    // a test out of the norm.
+    this->reset_time(4,67,127);
 }

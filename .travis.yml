@@ -14,8 +14,8 @@ script:
   - if [[ "$CC" == "clang" ]]; then SPEC="-spec unsupported/linux-clang" ;fi; qmake -r $SPEC
   - make
   - echo "running Test on Score Board"
-  - cd score_board; chmod +x tests/*;tests/score_board.sh; cd -
-  - cat score_board/master.log
+  - cd score_board; chmod +x tests/*;tests/score_board.sh
+  - cd -; cat score_board/master.log
 
 branches:
   only: master
