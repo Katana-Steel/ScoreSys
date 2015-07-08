@@ -17,18 +17,26 @@ sboard_test::test()
 }
 
 void
+sboard_test::validateTimer (int min,int sec, int usec)
+{
+    int val = this->timeMin->intValue ();
+    if (min != val)
+        throw (new Assert("min isn't 6 after reset!"));
+    val = this->timeSec->intValue ();
+    if (sec != val)
+        throw (new Assert("sec isn't 0 after reset!"));
+    val = this->timeProcentSec->intValue ();
+    if (usec != val)
+        throw (new Assert("hundreds of a sec isn't 0 after reset!"));
+
+}
+
+void
 sboard_test::testTimer()
 {
     this->reset_time();
-    int val = this->timeMin->intValue ();
-    if (6 != val)
-        throw (new Assert("min isn't 6 after reset!"));
-    val = this->timeSec->intValue ();
-    if (0 != val)
-        throw (new Assert("sec isn't 0 after reset!"));
-    val = this->timeProcentSec->intValue ();
-    if (0 != val)
-        throw (new Assert("hundreds of a sec isn't 0 after reset!"));
+    this->validateTimer();
     // a test out of the norm.
     this->reset_time(4,67,127);
+    this->validateTimer(4,67,127);
 }
