@@ -13,7 +13,7 @@ void
 Karate::setRightPlayer(QList<QString> pldata)
 {
   nameAka->setText (pldata.at (0));
-  scoreAka->setValue (pldata.at (1).toInt());
+  scoreAka->display (pldata.at (1));
   try {
     aka_cat1->setText  (pldata.at (2));
     aka_cat2->setText  (pldata.at (3));
@@ -28,10 +28,10 @@ void
 Karate::setLeftPlayer(QList<QString> pldata)
 {
   nameAo->setText (pldata.at (0));
-  scoreAka->setValue (pldata.at (1).toInt());
+  scoreAo->display(pldata.at (1));
   try {
-    aka_cat1->setText  (pldata.at (2));
-    aka_cat2->setText  (pldata.at (3));
+    ao_cat1->setText  (pldata.at (2));
+    ao_cat2->setText  (pldata.at (3));
   }
   catch (...)
   {
