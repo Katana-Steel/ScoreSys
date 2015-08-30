@@ -86,7 +86,7 @@ SQLdb::rowCount(const QString &tableName)
     QString query = "select * from " + tableName;
     QSqlQuery dbQuery = db->exec();
     bool success = dbQuery.exec(query);
-    int ret;
+    int ret = 0;
     if(success) {
         success = dbQuery.first();
         if(success) {

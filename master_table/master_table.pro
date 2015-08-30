@@ -32,7 +32,7 @@ OTHER_FILES += \
 win32:CONFIG(release, debug|release): LIBS += -L$$PWD/../common_lib/release/ -lcommon_lib
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../common_lib/debug/ -lcommon_lib
 else:symbian: LIBS += -lcommon_lib
-else:unix: LIBS += -L$$PWD/../common_lib/ -lcommon_lib
+else:unix: LIBS += -L$$PWD/../common_lib/ -lcommon_lib -Wl,-rpath ../common_lib/
 
 INCLUDEPATH += $$PWD/../common_lib
 DEPENDPATH += $$PWD/../common_lib
