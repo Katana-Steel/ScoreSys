@@ -1,12 +1,19 @@
 language: cpp
 
+sudo: false
+
 compiler:
   - gcc
   - clang
+addons:
+  apt:
+    packages:
+      - libqt4-dev
+      - libqt4-sql-sqlite
+      - netcat-traditional
 
 before_install:
-  - sudo apt-get update -qq && sudo apt-get install libqt4-dev netcat-traditional
-  - sudo update-alternatives --set nc /bin/nc.traditional
+  - update-alternatives --set nc /bin/nc.traditional
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start 
 
