@@ -5,15 +5,14 @@ sudo: false
 compiler:
   - gcc
   - clang
+
 addons:
   apt:
     packages:
       - libqt4-dev
       - libqt4-sql-sqlite
-      - netcat-traditional
 
 before_install:
-  - update-alternatives --set nc /bin/nc.traditional
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start 
 
