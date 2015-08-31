@@ -1,6 +1,6 @@
 language: cpp
 
-sudo: false
+sudo: required 
 
 compiler:
   - gcc
@@ -11,10 +11,12 @@ addons:
     packages:
       - libqt4-dev
       - libqt4-sql-sqlite
+      - netcat-traditional 
 
 before_install:
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start 
+  - sudo update-alternatives --set nc /bin/nc.traditional 
 
 script:
   - if [[ "$CC" == "clang" ]]; then SPEC="-spec unsupported/linux-clang" ;fi; qmake -r $SPEC
