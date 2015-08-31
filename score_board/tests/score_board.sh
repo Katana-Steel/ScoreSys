@@ -41,7 +41,7 @@ $NCSERV &> master.log &
 SB=$!
 
 sleep 5
-P=$(cat master.log|awk '{print $2}')
+P=$(tail -1 master.log|awk '{print $2}')
 [[ -z $P ]] && echo "Failed to send needUi Request" && fin_exit 1
 echo "Got Port ${P}"
 
