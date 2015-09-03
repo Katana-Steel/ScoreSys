@@ -18,7 +18,7 @@ function cli_test () {
 }
 
 function set_trad_nc() {
-  NCSERV="nc -dlui 3 -p 9500"
+  NCSERV="nc -dlu -i 3 -p 9500"
   NCCLI="nc -uq 1"
 }
 
