@@ -1,4 +1,4 @@
-7#!/bin/bash
+#!/bin/bash
 
 SB=
 function fin_exit() {
@@ -7,7 +7,7 @@ function fin_exit() {
 }
 
 function test_running() {
-  ps ax | grep $SB > /dev/null 2>&1
+  ps ax | awk '{print $1}' | grep $SB > /dev/null 2>&1
 }
 
 function cli_test () {
