@@ -23,7 +23,7 @@ function set_trad_nc() {
 }
 
 function set_bsd_nc() {
-  NCSERV="nc -d -l -p 9500 -u -i 3"
+  NCSERV="nc -4 -d -l -u -i 3 0.0.0.0 9500"
   NCCLI="nc -u -q 1"
 }
 
@@ -35,7 +35,12 @@ cd -
 
 tests/sboard_test || fin_exit $?
 
+nc -h 2>&1 |grep -i bsd &> /dev/null
+if [ $? -eq 0 ]; then
+  set_bsd_nc 
+else 
   set_trad_nc
+fi 
 
 echo "fake server:      $NCSERV"
 echo "fake server cli:  $NCCLI"
