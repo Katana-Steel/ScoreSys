@@ -35,12 +35,8 @@ cd -
 
 tests/sboard_test || fin_exit $?
 
-nc -h 2>&1 | grep -i bsd
-if [ $? -eq 0 ]; then
-  set_bsd_nc
-else
   set_trad_nc
-fi
+
 echo "fake server:      $NCSERV"
 echo "fake server cli:  $NCCLI"
 
