@@ -1,4 +1,4 @@
-#!/bin/bash
+7#!/bin/bash
 
 SB=
 function fin_exit() {
@@ -13,7 +13,7 @@ function test_running() {
 function cli_test () {
   local cmd=$1
   local port=$2
-  echo $cmd | $NCCLI 127.0.0.1 $port || fin_exit 2
+  echo -e "$cmd" | $NCCLI 127.0.0.1 $port || fin_exit 2
   test_running || fin_exit 1
 }
 
@@ -35,7 +35,7 @@ cd -
 
 tests/sboard_test || fin_exit $?
 
-nc -h 2>&1 | grep -i bsd 
+nc -h 2>&1 | grep -i bsd
 if [ $? -eq 0 ]; then
   set_bsd_nc
 else
@@ -79,12 +79,28 @@ cli_test "player r 'Claude Moné' pt:4 cat1:0 cat2:1" "$P"
 echo " Passed!"
 
 echo -n "Set Ui test 1"
-cli_test "setUi 'Killer Floor' karate" $P
+cli_test "SetUi 'Killer Floor' karate" $P
 echo " Passed!"
 
 echo -n "Player update test 2 (post ui)"
 cli_test "player r 'Claude Moné' pt:3 cat1:0 cat2:1" "$P"
 echo " Passed!"
 
+echo -n "Player update test 3 (post ui)"
+cli_test "player l 'Picasso' pt:6 cat1:2 cat2:0" "$P"
+echo " Passed!"
+
+echo -n "Player update test 4 (post ui)"
+cli_test "player l 'Picasso' pt:6 cat1:2 cat2:1\nplayer r 'Claude Moné' pt:5 cat1:2 cat2:1" "$P"
+echo " Passed!"
+
+echo -n "Player update test 5 (post ui - incomplete option list)"
+cli_test "player l 'Picasso' pt:6 cat1:3" "$P"
+echo " Passed!"
+
+echo -n "Full players setup test 1 (incl. ui)"
+cli_test "SetUi 'Cleb D-Match' karate\nplayer l 'Chuck Norris' pt:0 cat1:0 cat2:0\nplayer r 'Jet Lee' pt:0 cat1:0 cat2:0\ntimer x 6:0:0" "$P"
+echo " Passed!"
+[ -n $1 ] && sleep 6
 echo "All Passed!"
 fin_exit $?

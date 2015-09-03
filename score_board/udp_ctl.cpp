@@ -55,7 +55,6 @@ udpserver::timerOps ( QList<QByteArray> ops)
     timer->start_time();
   if (ops.at(1) == "stop")
     timer->stop_time();
-
 }
 
 void
@@ -78,7 +77,7 @@ udpserver::playerOps ( QByteArray ops)
 
   QList<QString> update = QList<QString>();
   int i = ops.indexOf ("'")+1;
-  int j = ops.indexOf ("'",i)-1;
+  int j = ops.indexOf ("'",i);
   QString n = QString(ops.mid(i,j-i));
   update.append(n);
   foreach( QString part, ops.mid (j+2).split(' ')) {
