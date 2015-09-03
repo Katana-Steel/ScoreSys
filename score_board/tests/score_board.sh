@@ -18,12 +18,12 @@ function cli_test () {
 }
 
 function set_trad_nc() {
-  NCSERV="nc -lui 3 -p 9500"
+  NCSERV="nc -ldui 3 -p 9500"
   NCCLI="nc -uq 1"
 }
 
 function set_bsd_nc() {
-  NCSERV="nc -l -p 9500 -u -i 3"
+  NCSERV="nc -l -d -p 9500 -u -i 3"
   NCCLI="nc -u -q 1"
 }
 
