@@ -1,10 +1,10 @@
 
-mocs = ../moc_sboard.o ../moc_karate.o
+mocs = ../moc_sboard.o ../moc_karate.o ../moc_football.o
 
 all: sboard_test
 
 sboard_test: sboard.o test.o
-	$(LINK) $(LFLAGS) -o sboard_test ../sboard.o ../karate.o $(mocs) sboard.o test.o $(LIBS)
+	$(LINK) $(LFLAGS) -o sboard_test ../sboard.o ../karate.o ../football.o $(mocs) sboard.o test.o $(LIBS)
 
 sboard.h: ../sboard.h
 	cp ../sboard.h .
