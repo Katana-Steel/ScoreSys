@@ -3,6 +3,7 @@
 #include <QtSql>
 #include "sboard.h"
 #include "karate.h"
+#include "football.h"
 #include "udp_ctl.h"
 
 sboard::sboard(QWidget *parent)
@@ -131,6 +132,9 @@ sboard::set_score_ui (const QString &str)
     scoreBase *newui=0;
     if (str.toLower() == QString ("karate")){
       newui = new Karate(this);
+    }
+    if (str.toLower() == QString ("football")){
+      newui = new Football(this);
     }
 
     if (newui != 0) {

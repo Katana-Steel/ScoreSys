@@ -9,9 +9,9 @@ INCLUDEPATH += . ./tests/
 QT += sql network
 
 # Input
-HEADERS += karate.h sboard.h udp_ctl.h
-FORMS += sboard.ui karate.ui
-SOURCES += sboard.cpp karate.cpp udp_ctl.cpp main.cpp
+HEADERS += karate.h football.h sboard.h udp_ctl.h 
+FORMS += sboard.ui karate.ui football.ui
+SOURCES += sboard.cpp karate.cpp football.cpp udp_ctl.cpp main.cpp
 
 
 # Flow:
