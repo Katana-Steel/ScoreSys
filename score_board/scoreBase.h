@@ -1,4 +1,7 @@
 /*  GPL preample */
+#ifndef __scoring_sys_score_base_h 
+#define __scoring_sys_score_base_h 1
+
 #include  <QWidget>
 #include  <QList>
 
@@ -20,3 +23,5 @@ public:
   */
   virtual void setLeftPlayer (QList <QString> pldata) = 0;
 };
+
+#endif 
