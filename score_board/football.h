@@ -7,7 +7,7 @@
 class Football : public scoreBase, private Ui_Football
 {
     Q_OBJECT
-    QStringList timeouts
+    QStringList timeouts;
 public:
     Football (QWidget *parent=0);
     void setRightPlayer ( QList<QString> pldata );

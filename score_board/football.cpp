@@ -3,7 +3,7 @@
 #include "football.h"
 
 Football ::Football (QWidget *parent)
-  : scoreBase(parent)
+  : scoreBase(parent),timeouts()
 {
     setupUi(this);
 }
