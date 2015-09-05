@@ -101,6 +101,19 @@ echo " Passed!"
 echo -n "Full players setup test 1 (incl. ui)"
 cli_test "SetUi 'Cleb D-Match' karate\nplayer l 'Chuck Norris' pt:0 cat1:0 cat2:0\nplayer r 'Jet Lee' pt:0 cat1:0 cat2:0\ntimer x 6:0:0" "$P"
 echo " Passed!"
-[ -n $1 ] && sleep 6
+
+echo -n "Full players setup test 2 (incl. ui)"
+cli_test "SetUi 'AMC Cup finals 1st quarter' football\nplayer r 'Oklahoma state' pt:0 timeouts:3\nplayer l 'South Dakota state' pt:0 timeouts:3\ntimer x 45:0:0" "$P"
+echo " Passed!"
+
+echo -n "Full players setup test 3 (incl. ui)"
+cli_test "SetUi 'week 3 3rd quarter' nfl\nplayer r 'oak' pt:14 timeouts:3\nplayer l 'tb' pt:10 timeouts:3\ntimer x 45:0:0" "$P"
+echo " Passed!"
+
+echo -n "Full players setup test 4 (incl. ui)"
+cli_test "SetUi 'troll toss finals' simple\nplayer r 'home' pt:0\nplayer l 'away' pt:0\ntimer x 45:0:0" "$P"
+echo " Passed!"
+
+[ "x$1" != "x" ] && sleep 6
 echo "All Passed!"
 fin_exit $?
