@@ -13,6 +13,7 @@ SOURCES += \
     main.cpp \
     SQLdb.cpp \
     MasterServer.cpp \
+    MasterUI.cpp \
     tests/test.cpp \
     tests/testMasterServer.cpp \
     tests/testSQLdb.cpp
@@ -21,10 +22,14 @@ HEADERS += \
     error.h \
     SQLdb.h \
     MasterServer.h \
+    MasterUI.h \
     tests/test.h \
     tests/testMasterServer.h \
     tests/testSQLdb.h \
     tests/testMasterServerObjects.h
+
+FORMS += \
+    MasterUI.ui
 
 OTHER_FILES += \
     db_create.sql
