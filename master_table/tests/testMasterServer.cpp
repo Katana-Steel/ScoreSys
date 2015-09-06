@@ -49,7 +49,7 @@ testRequestTitle::start()
 {
     QUdpSocket *sock = new QUdpSocket();
     sock->bind(myPort);
-    QByteArray datagram = "title " + QByteArray::number((uint)myPort);
+    QByteArray datagram = "needUi " + QByteArray::number((uint)myPort);
     sock->writeDatagram(datagram,QHostAddress::Broadcast,9500);
 }
 

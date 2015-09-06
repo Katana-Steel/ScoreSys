@@ -16,7 +16,7 @@ MasterServer::process(const QString &IPv4, QByteArray msg)
     QList<QByteArray> parts = msg.split(' ');
     if(parts.count() == 2) {
         QString cmd = parts.at(0);
-        if(cmd == QString("title")) {
+        if(cmd == QString("needUi")) {
             quint16 thePort = parts.at(1).toUShort();
             if(autoMode) {
                 counts++;
