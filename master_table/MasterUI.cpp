@@ -2,7 +2,7 @@
 #include "MasterUI.h"
 
 
-MainMasterUi:: MainMasterUi(QObject *parent)
+MainMasterUi:: MainMasterUi(QWidget *parent)
   : QMainWindow (parent)
 { 
   setupUi(this);

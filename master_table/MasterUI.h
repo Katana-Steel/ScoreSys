@@ -2,11 +2,11 @@
 #define __scoring_sys_master_table_ui_h 1
 #include "ui_MasterUI.h"
 
-class MainMasterUi : public QMainWindow, private Ui::MasterUI
+class MainMasterUi : public QMainWindow, private Ui::MainWindow
 {
    Q_OBJECT 
 public:
-    MainMasterUi(QObject *parent=0);
+    MainMasterUi(QWidget *parent=0);
 };
 
 
