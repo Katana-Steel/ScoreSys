@@ -7,7 +7,7 @@ Board::Board(const QString & ipAddr, quint16 udpPort , QObject *parent) :
     board = new QUdpSocket(this);
     QHostAddress addr;
     addr.setAddress(ipAddr);
-    board->connectToHost(addr, udpPort QUdpSocket::WriteOnly);
+    board->connectToHost(addr, udpPort, QUdpSocket::WriteOnly);
 
 }
 
