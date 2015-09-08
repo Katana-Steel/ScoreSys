@@ -11,7 +11,10 @@ class Board : public QObject
     QString name;
     QUdpSocket *board;
 public:
-    explicit Board(quint64 id,QObject *parent = 0);
+    explicit Board(
+     const QString &ipAddr, 
+     quint16 udpPort ,
+     QObject *parent = 0);
     
 signals:
     

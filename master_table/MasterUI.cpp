@@ -4,13 +4,24 @@
 #include "board.h"
 
 MainMasterUi::MainMasterUi(QWidget *parent)
-  : QMainWindow (parent)
+  : QMainWindow (parent),boards ()
 { 
   setupUi(this);
   this->server =  new MasterServer();
 }
 
+void 
+MainMasterUi::addNewBoard(const QString &ip, quint16 port)
+{ 
+  Board *brd = new Board  (ip,port,this);
+  this->boards.append (brd);
+}
+
 void
-MainMasterUi::addNewBoard()
+MainMasterUi::updateBoard (const QString &title, const QString & ip, port)
 {
+  if ( this->boards.isEmpty ())
+    addNewBoard  (ip,port);
+  Board *brd = this->boards.at(0);
+  brd->execCommand  ("SetUi '"+title+"' karate\n");
 }
