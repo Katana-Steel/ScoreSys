@@ -18,7 +18,7 @@ MainMasterUi::addNewBoard(const QString &ip, quint16 port)
 }
 
 void
-MainMasterUi::updateBoard (const QString &title, const QString & ip, port)
+MainMasterUi::updateBoard (const QString &title, const QString & ip, quint16 port)
 {
   if ( this->boards.isEmpty ())
     addNewBoard  (ip,port);
