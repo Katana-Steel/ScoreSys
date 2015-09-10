@@ -6,16 +6,18 @@
 
 int main(int ac, char** av)
 {
+    int ret = 0;
     QApplication a(ac,av);
     try {
         test();
-        if (! a.arguments().contains ("--test-only")) { 
+        if (! a.arguments().contains("--test-only")) { 
             MainMasterUi *main = new MainMasterUi();
             main->show();
+	    ret = a.exec();
         }
     }
     catch(...) {
         return -1;
     }
-    return 0;
+    return ret;
 }

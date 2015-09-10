@@ -15,6 +15,8 @@ public:
      const QString &ipAddr, 
      quint16 udpPort ,
      QObject *parent = 0);
+    void setName(const QString &str);
+    const QString& getName();
     
 signals:
     

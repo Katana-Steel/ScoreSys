@@ -6,7 +6,7 @@ MasterServer::MasterServer(bool mode, QObject *parent) :
     QObject(parent),autoMode(mode),counts(0)
 {
     masterSocket = new QUdpSocket(this);
-    masterSocket->bind(9500);
+    masterSocket->bind(9500,QUdpSocket::ShareAddress);
     connect(masterSocket, SIGNAL(readyRead()), this, SLOT(incomming()));
 }
 
