@@ -7,9 +7,10 @@
 class Board : public QObject
 {
     Q_OBJECT
-    quint64 id;
+
     QString name;
     QUdpSocket *board;
+    QString type;
 public:
     explicit Board(
      const QString &ipAddr, 
@@ -17,11 +18,15 @@ public:
      QObject *parent = 0);
     void setName(const QString &str);
     const QString& getName();
+
+    bool myAddr (const QString &ip, quint16 port);
+    const QString& getType();
     
 signals:
     
 public slots:
     void execCommand(const QString&);
+    void updateBoard ( );
     
 };
 
