@@ -1,5 +1,4 @@
-
-void#include "board.h"
+#include "board.h"
 #include <QtNetwork>
 
 Board::Board(const QString & ipAddr, quint16 udpPort , QObject *parent) :
@@ -24,8 +23,8 @@ Board::setName(const QString &str)
   this->name = str;
 }
 
-QString& 
-Board::getName() const
+const QString& 
+Board::getName()
 {
   return this->name;
 }
@@ -40,8 +39,8 @@ Board::myAddr (const QString &ip, quint16 port)
   return ret;
 } 
 
-QString& 
-Board::getType() const
+const QString& 
+Board::getType()
 { 
   return this->type;
 } 
