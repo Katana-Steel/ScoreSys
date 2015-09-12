@@ -17,10 +17,10 @@ public:
      quint16 udpPort ,
      QObject *parent = 0);
     void setName(const QString &str);
-    const QString& getName();
+    QString& getName() const;
 
     bool myAddr (const QString &ip, quint16 port);
-    const QString& getType();
+    QString& getType() const;
     
 signals:
     

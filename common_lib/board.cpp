@@ -12,7 +12,8 @@ Board::Board(const QString & ipAddr, quint16 udpPort , QObject *parent) :
 
 }
 
-void Board::execCommand(const QString &exec)
+void 
+Board::execCommand(const QString &exec)
 {
     board->write(exec.toLatin1());
 }
@@ -22,8 +23,9 @@ Board::setName(const QString &str)
 {
   this->name = str;
 }
-const QString & 
-Board::getName()
+
+QString& 
+Board::getName() const
 {
   return this->name;
 }
@@ -38,8 +40,8 @@ Board::myAddr (const QString &ip, quint16 port)
   return ret;
 } 
 
-const QString& 
-Board::getType()
+QString& 
+Board::getType() const
 { 
   return this->type;
 } 
