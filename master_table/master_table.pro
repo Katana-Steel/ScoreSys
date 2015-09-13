@@ -14,6 +14,7 @@ SOURCES += \
     SQLdb.cpp \
     MasterServer.cpp \
     MasterUI.cpp \
+    BoardListItem.cpp \
     tests/test.cpp \
     tests/testMasterServer.cpp \
     tests/testSQLdb.cpp
@@ -23,6 +24,7 @@ HEADERS += \
     SQLdb.h \
     MasterServer.h \
     MasterUI.h \
+    BoardListItem.h \
     tests/test.h \
     tests/testMasterServer.h \
     tests/testSQLdb.h \

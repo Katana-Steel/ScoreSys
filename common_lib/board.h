@@ -21,9 +21,10 @@ public:
 
     bool myAddr (const QString &ip, quint16 port);
     const QString& getType();
+    void setType (const QString &str);
     
 signals:
-    
+    void boardChanged()
 public slots:
     void execCommand(const QString&);
     void updateBoard ( );

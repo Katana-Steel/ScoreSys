@@ -2,6 +2,7 @@
 #include "MasterUI.h"
 #include "MasterServer.h"
 #include "board.h"
+#include "BoardListItem.h"
 
 MainMasterUi::MainMasterUi(QWidget *parent)
   : QMainWindow (parent),boards ()
@@ -18,7 +19,7 @@ MainMasterUi::addNewBoard(const QString &ip, quint16 port)
   Board *brd = new Board  (ip,port,this);
   brd->setName(ip + ":" + QString::number(port) + " - Default");
   this->boards.append (brd);
-  QListWidgetItem *lwi = new QListWidgetItem(brd->getName());
+  BoardListItem *lwi = new BoardListItem(brd);
   this->listView->addItem(lwi);
 }
 

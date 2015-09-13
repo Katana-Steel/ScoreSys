@@ -21,6 +21,7 @@ void
 Board::setName(const QString &str)
 {
   this->name = str;
+  emit boardUpdated ();
 }
 
 const QString& 
@@ -49,4 +50,11 @@ void
 Board::updateBoard ( ) 
 { 
   this->execCommand  ("SetUi '" +this->name +"' "+ this->type);
-} 
+}
+
+void
+Board::setType(const QString &str)
+{
+  this->type = str;
+  emit boardUpdated ();
+}
