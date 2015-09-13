@@ -24,7 +24,8 @@ public:
     void setType (const QString &str);
     
 signals:
-    void boardChanged()
+    void boardChanged();
+
 public slots:
     void execCommand(const QString&);
     void updateBoard ( );
