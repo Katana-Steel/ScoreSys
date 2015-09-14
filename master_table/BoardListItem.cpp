@@ -6,12 +6,12 @@
 BoardListItem::BoardListItem  (Board * brd, QListWidget *parent )
   : QListWidgetItem(parent),_board  (brd)
 { 
-  setText(this->board->getName());
-  connect(this->board,SIGNAL(boardChanged()), this, SLOT(updateBoardName()));
+  setText(_board->getName());
+  connect(_board,SIGNAL(boardChanged()), this, SLOT(updateBoardName()));
 } 
 
 void
 BoardListItem::updateBoardName()
 { 
-   setText (board->getName());
+   setText (_board->getName());
 }
