@@ -21,7 +21,7 @@ void
 Board::setName(const QString &str)
 {
   this->name = str;
-  emit boardUpdated ();
+  emit boardChanged  ();
 }
 
 const QString& 
@@ -56,5 +56,5 @@ void
 Board::setType(const QString &str)
 {
   this->type = str;
-  emit boardUpdated ();
+  emit boardChanged ();
 }
