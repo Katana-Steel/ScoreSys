@@ -22,6 +22,7 @@ private:
     void process(const QString &IPv4, QByteArray msg);
 public slots:
     void incomming();
+    void setAutoMode(bool);
 };
 
 #endif // MASTERSERVER_H

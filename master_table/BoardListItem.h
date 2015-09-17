@@ -14,6 +14,7 @@ class BoardListItem : public QObject, public QListWidgetItem
 public :
     BoardListItem(Board*, QListWidget *parent=0);
 
+    Board* getBoard() const;
 private slots:
     void updateBoardName();
 };

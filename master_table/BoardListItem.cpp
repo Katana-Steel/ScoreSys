@@ -10,8 +10,15 @@ BoardListItem::BoardListItem  (Board * brd, QListWidget *parent )
   connect(_board,SIGNAL(boardChanged()), this, SLOT(updateBoardName()));
 } 
 
+Board*
+BoardListItem::getBoard() const
+{
+    return this->_board;
+}
+
 void
 BoardListItem::updateBoardName()
 { 
    setText (_board->getName());
 }
+

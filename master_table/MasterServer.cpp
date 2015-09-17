@@ -42,3 +42,9 @@ MasterServer::incomming()
         process(ip, msg);
     }
 }
+
+void
+MasterServer::setAutoMode(bool mode)
+{
+    this->autoMode = mode;
+}
