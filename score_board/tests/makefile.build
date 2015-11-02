@@ -1,18 +1,35 @@
 
-mocs = ../moc_sboard.o ../moc_karate.o ../moc_football.o
+preobjs = \
+  ../karate.o \
+  ../sboard.o \
+  ../football.o \
+  ../moc_sboard.o \
+  ../moc_karate.o \
+  ../moc_football.o
+
+tobjs = karate.o sboard.o test.o
 
 all: sboard_test
 
-sboard_test: sboard.o test.o
-	$(LINK) $(LFLAGS) -o sboard_test ../sboard.o ../karate.o ../football.o $(mocs) sboard.o test.o $(LIBS)
+sboard_test: $(tobjs)
+	$(LINK) $(LFLAGS) -o sboard_test $(preobjs) $(tobjs) $(LIBS)
 
 sboard.h: ../sboard.h
 	cp ../sboard.h .
 	sed -i 's/private/protected/' sboard.h
 	sed -i 's%ui_%../ui_%' sboard.h
 
+karate.h: ../karate.h
+	cp ../karate.h .
+	sed -i 's/private/protected/' karate.h
+	sed -i 's%ui_%../ui_%' karate.h
+	sed -i 's%scoreBase\.h%../scoreBase.h%' karate.h
+
 test.o: test.cpp tsboard.h
 	$(CXX) $(CXXFLAGS) $(INCPATH) -c test.cpp
 
 sboard.o: sboard.cpp sboard.h tsboard.h
 	$(CXX) $(CXXFLAGS) $(INCPATH) -c sboard.cpp
+
+karate.o: karate.cpp karate.h tkarate.h
+	$(CXX) $(CXXFLAGS) $(INCPATH) -c karate.cpp

@@ -78,9 +78,9 @@ udpserver::playerOps ( QByteArray ops)
   QList<QString> update = QList<QString>();
   int i = ops.indexOf ("'")+1;
   int j = ops.indexOf ("'",i);
-  QString n = QString(ops.mid(i,j-i));
+  QString n = QString::fromUtf8(ops.mid(i,j-i));
   update.append(n);
-  foreach( QString part, ops.mid (j+2).split(' ')) {
+  foreach( QString part, QString::fromUtf8(ops.mid(j+2)).split(' ')) {
     update.append(part);
   }
   if (pl == 'r')

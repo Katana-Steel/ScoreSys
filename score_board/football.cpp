@@ -9,11 +9,19 @@ Football ::Football (QWidget *parent)
 }
 
 void
-Football::setRightPlayer(QList<QString> pldata)
+Football::setRightPlayer(const QList<QString> &pldata)
 {
+  QString Away = pldata.at(0);
+  QString Score = pldata.at(1).split(':').at(1);
+  this->away_team->setText(Away);
+  this->away_score->display(Score);
 }
 
 void
-Football::setLeftPlayer(QList<QString> pldata)
+Football::setLeftPlayer(const QList<QString> &pldata)
 {
+  QString Home = pldata.at(0);
+  QString Score = pldata.at(1).split(':').at(1);
+  this->home_team->setText(Home);
+  this->home_score->display(Score);
 }

@@ -30,7 +30,7 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="home_team">
        <property name="text">
         <string>Home</string>
        </property>
@@ -57,7 +57,7 @@
          <height>200</height>
         </size>
        </property>
-       <widget class="QLCDNumber" name="lcdNumber">
+       <widget class="QLCDNumber" name="home_score">
         <property name="geometry">
          <rect>
           <x>40</x>
@@ -93,7 +93,7 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="away_team">
        <property name="text">
         <string>Away</string>
        </property>
@@ -120,7 +120,7 @@
          <height>200</height>
         </size>
        </property>
-       <widget class="QLCDNumber" name="lcdNumber_2">
+       <widget class="QLCDNumber" name="away_score">
         <property name="geometry">
          <rect>
           <x>50</x>

@@ -7,11 +7,13 @@
 class Karate : public scoreBase, private Ui_Karate
 {
     Q_OBJECT
-    QStringList penalties;
 public:
     Karate  (QWidget *parent=0);
-    void setRightPlayer ( QList<QString> pldata );
-    void setLeftPlayer ( QList<QString> pldata );
+    void setRightPlayer ( const QList<QString> &pldata );
+    void setLeftPlayer ( const QList<QString> &pldata );
+
+private:
+    QStringList penalties;
 };
 
 #endif

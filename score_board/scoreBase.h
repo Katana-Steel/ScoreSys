@@ -15,13 +15,13 @@ public:
      first  element will be the display name
      second element will be the player's current score
   */
-  virtual void setRightPlayer (QList <QString> pldata) = 0;
+  virtual void setRightPlayer (const QList <QString> &pldata) = 0;
   /** void setLeftPlayer  ();
    param QList<QString>
      first  element will be the display name
      second element will be the player's current score
   */
-  virtual void setLeftPlayer (QList <QString> pldata) = 0;
+  virtual void setLeftPlayer (const QList <QString> &pldata) = 0;
 };
 
 #endif 

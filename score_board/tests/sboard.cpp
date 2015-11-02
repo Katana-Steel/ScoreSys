@@ -1,4 +1,5 @@
 #include "tsboard.h"
+#include "tkarate.h"
 #include "tests.h"
 #include <iostream>
 
@@ -14,6 +15,9 @@ sboard_test::test()
 {
   cout << "initated unit test of sboard" << endl;
   this->testTimer();
+  cout << "timer tests done, pass" << endl;
+  this->testScores();
+  cout << "scoring tests done, pass" << endl;
 }
 
 void
@@ -40,3 +44,13 @@ sboard_test::testTimer()
     this->reset_time(4,67,127);
     this->validateTimer(4,67,127);
 }
+
+void
+sboard_test::testScores()
+{
+  this->set_score_ui(QString("karate"));
+  if(!this->scores) {
+    throw(new Assert("couldn't set the central scoring ui"));
+  }
+}
+

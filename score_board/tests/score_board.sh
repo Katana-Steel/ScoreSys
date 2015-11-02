@@ -45,7 +45,7 @@ fi
 echo "fake server:      $NCSERV"
 echo "fake server cli:  $NCCLI"
 
-$NCSERV > master.log &
+$NCSERV &> master.log &
 
 ./score_board &
 SB=$!

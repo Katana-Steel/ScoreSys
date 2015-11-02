@@ -10,7 +10,7 @@ Karate::Karate(QWidget *parent)
 }
 
 void
-Karate::setRightPlayer(QList<QString> pldata)
+Karate::setRightPlayer(const QList<QString> &pldata)
 {
   nameAka->setText (pldata.at (0));
   scoreAka->display (pldata.at(1).split(':').at(1));
@@ -33,7 +33,7 @@ Karate::setRightPlayer(QList<QString> pldata)
 }
 
 void
-Karate::setLeftPlayer(QList<QString> pldata)
+Karate::setLeftPlayer(const QList<QString> &pldata)
 {
   nameAo->setText (pldata.at (0));
   scoreAo->display(pldata.at (1).split(':').at(1));
