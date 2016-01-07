@@ -3,10 +3,11 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET =
+TARGET = score_board
 DEPENDPATH += .
 INCLUDEPATH += . ./tests/
 QT += sql network
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 # Input
 HEADERS += karate.h football.h sboard.h udp_ctl.h 

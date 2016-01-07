@@ -3,7 +3,7 @@
 ######################################################################
 
 TEMPLATE = lib
-TARGET = 
+TARGET = common_lib
 DEPENDPATH += .
 INCLUDEPATH += .
 QT += xml sql network

@@ -7,7 +7,7 @@ TARGET = MasterServer
 DEPENDPATH += .
 INCLUDEPATH += . ./tests
 QT += sql network
-
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 # Input
 SOURCES += \
     main.cpp \
